@@ -17,7 +17,7 @@ from django.utils.encoding import filepath_to_uri
 from django.utils.functional import cached_property
 from gluster import gfapi
 
-from filestorage.filestorageapp.storage.webdav import ResumableWebDav
+from storage.webdav import ResumableWebDav
 
 
 class GlusterFSConfig(object):

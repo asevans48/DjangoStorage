@@ -6,7 +6,7 @@ Abstract webdav object
 
 from django.core.cache import cache, caches
 
-from ...filestorage import settings
+from django.conf import global_settings as settings
 
 
 class ResumableWebDav(object):

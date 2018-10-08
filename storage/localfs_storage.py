@@ -10,7 +10,7 @@ from django.core.cache import cache, caches
 from django.core.files import File
 from django.core.files.storage import FileSystemStorage
 
-from filestorage.filestorageapp.storage.webdav import ResumableWebDav
+from storage.webdav import ResumableWebDav
 
 
 class LocalFileStorage(FileSystemStorage, ResumableWebDav):
