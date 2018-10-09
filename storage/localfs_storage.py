@@ -243,5 +243,5 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
         dirs = os.path.sep.join([self.location, dirs])
         if os.path.exists(dirs):
             return False
-        os.mkdir(dirs)
+        os.makedirs(dirs)
         return True
