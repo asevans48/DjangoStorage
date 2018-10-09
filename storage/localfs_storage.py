@@ -254,3 +254,30 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
             return False
         os.makedirs(dirs)
         return True
+
+    def open_pipe(self, name):
+        """
+
+        :param name: Path to the file
+        :return:  A reader and writer in that order in a tuple (fds)
+        :rtype:  tuple
+        """
+        full_path = self.path(name)
+        return os.pipe(full_path)
+
+    def close_reader(self, r):
+        """
+        Close a reader
+
+        :param r:  The reader
+        :type: fd
+        """
+        os.close(r)
+
+    def close_writer(self, w):
+        """
+        Close a writer
+        :param w:  The writer fd
+        :type w:  fd
+        """
+        os.close(w)
