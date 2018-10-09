@@ -106,6 +106,16 @@ class GlusterFSStorage(Storage, ResumableWebDav):
             url = url.lstrip('/')
         return urljoin(self.base_url, url)
 
+    def join_path(self, path_parts):
+        """
+        Join a path list
+        :param path_parts:  The path parts
+        :type path_parts:  dir
+        :return:  The path string
+        :rtype:  str
+        """
+        return os.path.sep.join(path_parts)
+
     def _save(self, name, content):
         """
         Save a file to the gluster fs.

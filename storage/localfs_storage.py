@@ -24,6 +24,16 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
                                         directory_permissions_mode)
         self.location = location
 
+    def join_path(self, path_parts):
+        """
+        Join a path list
+        :param path_parts:  The path parts
+        :type path_parts:  dir
+        :return:  The path string
+        :rtype:  str
+        """
+        return os.path.sep.join(path_parts)
+
     def save(self, name, content, max_length=None):
         """
         Save new content to the file specified by name. The content should be
