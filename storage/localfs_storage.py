@@ -109,7 +109,7 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
                 with caches['default'].lock('{}_{}'.format(full_path, 'writer')):
                     self.lock(full_path, user)
                     try:
-                        fd = os.fopen(full_path, os.O_CREAT)
+                        fd = os.mknod(full_path)
                     finally:
                         self.unlock(full_path, user)
                     return True
