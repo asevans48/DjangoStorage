@@ -230,7 +230,7 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
         :return:  Whether the director was created
         :rtype:  bool
         """
-        dirs = os.path.join([self.location, dirs])
+        dirs = os.path.sep.join([self.location, dirs])
         if os.path.exists(dirs):
             return False
         os.mkdir(dirs)
