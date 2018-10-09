@@ -461,3 +461,6 @@ class GlusterFSStorage(Storage, ResumableWebDav):
             buf, l = self.safe_read_chunk(name, current_offset, max_buf_length)
             current_offset += l
             yield (buf, l, current_offset)
+
+    def mkdirs(self, name):
+        pass

@@ -22,6 +22,7 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
         FileSystemStorage.__init__(self, location, base_url,
                                         file_permissions_mode,
                                         directory_permissions_mode)
+        self.location = location
 
     def save(self, name, content, max_length=None):
         """
@@ -221,3 +222,16 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
             buf, l = self.safe_read_chunk(name, current_offset, max_buf_length)
             current_offset += l
             yield (buf, l, current_offset)
+
+    def mkdirs(self, dirs):
+        """
+        Create a full set of directories as needed
+        :param dirs:  The path to create
+        :return:  Whether the director was created
+        :rtype:  bool
+        """
+        dirs = os.path.join([self.location, dirs])
+        if os.path.exists(dirs):
+            return False
+        os.mkdir(dirs)
+        return True
