@@ -34,6 +34,15 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
         """
         return os.path.sep.join(path_parts)
 
+    def listdir(self, path):
+        """
+        List files in the
+        :param path:
+        :return:
+        """
+        fpath = os.path.sep.join([self.location, path])
+        return os.listdir(fpath)
+
     def save(self, name, content, max_length=None):
         """
         Save new content to the file specified by name. The content should be
