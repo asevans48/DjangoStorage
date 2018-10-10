@@ -255,7 +255,7 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
         os.makedirs(dirs)
         return True
 
-    def open_pipe(self, name):
+    def open_pipe_for_append(self, name):
         """
 
         :param name: Path to the file
@@ -263,7 +263,7 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
         :rtype:  tuple
         """
         full_path = self.path(name)
-        return open(full_path)
+        return open(full_path, 'a')
 
     def close_pipe(self, pipe):
         pipe.close()
