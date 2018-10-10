@@ -263,21 +263,8 @@ class LocalFileStorage(FileSystemStorage, ResumableWebDav):
         :rtype:  tuple
         """
         full_path = self.path(name)
-        return os.pipe(full_path)
+        return open(full_path)
 
-    def close_reader(self, r):
-        """
-        Close a reader
+    def close_pipe(self, pipe):
+        pipe.close()
 
-        :param r:  The reader
-        :type: fd
-        """
-        os.close(r)
-
-    def close_writer(self, w):
-        """
-        Close a writer
-        :param w:  The writer fd
-        :type w:  fd
-        """
-        os.close(w)
